@@ -34,10 +34,6 @@ class MyWidget(QMainWindow):
 
         return random_size, random_x, random_y
 
-    def random_color(self):
-        rgb = random.choice(range(255)), random.choice(range(255)), random.choice(range(255))
-        return rgb
-
     def paintEvent(self, event):
         if self.flag:
             qp = QPainter()
@@ -49,9 +45,7 @@ class MyWidget(QMainWindow):
     def draw_flag(self, qp):
         random_size, random_x, random_y = self.random_size_and_coor()
         print(random_x)
-        rgb = self.random_color()
-        qp.setBrush(QColor(*rgb))
-        rect = QRectF(random_x, random_y, random_size, random_size)
+        qp.setBrush(QColor(210, 240, 17))
         qp.drawEllipse(random_x, random_y, random_size, random_size)
 
 
