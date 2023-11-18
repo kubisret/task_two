@@ -12,7 +12,6 @@ class MyWidget(QMainWindow):
         super().__init__()
         uic.loadUi('UI.ui', self)
         self.initUI()
-        self.spis_elips = []
 
     def initUI(self):
         self.setGeometry(100, 100, 500, 500)
@@ -37,7 +36,6 @@ class MyWidget(QMainWindow):
 
     def random_color(self):
         rgb = random.choice(range(255)), random.choice(range(255)), random.choice(range(255))
-
         return rgb
 
     def paintEvent(self, event):
@@ -45,19 +43,16 @@ class MyWidget(QMainWindow):
             qp = QPainter()
             qp.begin(self)
             self.draw_flag(qp)
-
-            for circle in self.spis_elips:
-                rgb = self.random_color()
-                qp.setBrush(QColor(*rgb))
-                qp.drawEllipse(circle)
             qp.end()
-        self.flag = False
+            self.flag = False
 
     def draw_flag(self, qp):
         random_size, random_x, random_y = self.random_size_and_coor()
-
-        elips = QRectF(random_x, random_y, random_size, random_size)
-        self.spis_elips.append(elips)
+        print(random_x)
+        rgb = self.random_color()
+        qp.setBrush(QColor(*rgb))
+        rect = QRectF(random_x, random_y, random_size, random_size)
+        qp.drawEllipse(random_x, random_y, random_size, random_size)
 
 
 if __name__ == '__main__':
